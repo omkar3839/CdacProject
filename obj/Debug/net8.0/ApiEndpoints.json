@@ -1,0 +1,579 @@
+[
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.CivilianController",
+    "Method": "Login",
+    "RelativePath": "api/Civilian/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginData",
+        "Type": "EPoliceConnectAPI.Models.Civilian",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.CivilianController",
+    "Method": "Signup",
+    "RelativePath": "api/Civilian/signup",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "civilian",
+        "Type": "EPoliceConnectAPI.Models.Civilian",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.ComplaintsController",
+    "Method": "GetComplaints",
+    "RelativePath": "api/Complaints",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EPoliceConnectAPI.Models.Complaint, EPoliceConnectAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.ComplaintsController",
+    "Method": "PostComplaint",
+    "RelativePath": "api/Complaints",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "complaint",
+        "Type": "EPoliceConnectAPI.Models.Complaint",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EPoliceConnectAPI.Models.Complaint",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.ComplaintsController",
+    "Method": "GetComplaint",
+    "RelativePath": "api/Complaints/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EPoliceConnectAPI.Models.Complaint",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.ComplaintsController",
+    "Method": "PutComplaint",
+    "RelativePath": "api/Complaints/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "complaint",
+        "Type": "EPoliceConnectAPI.Models.Complaint",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.ComplaintsController",
+    "Method": "DeleteComplaint",
+    "RelativePath": "api/Complaints/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.CriminalsController",
+    "Method": "GetCriminals",
+    "RelativePath": "api/Criminals",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EPoliceConnectAPI.Models.Criminal, EPoliceConnectAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.CriminalsController",
+    "Method": "PostCriminal",
+    "RelativePath": "api/Criminals",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "criminal",
+        "Type": "EPoliceConnectAPI.Models.Criminal",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EPoliceConnectAPI.Models.Criminal",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.CriminalsController",
+    "Method": "GetCriminal",
+    "RelativePath": "api/Criminals/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EPoliceConnectAPI.Models.Criminal",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.CriminalsController",
+    "Method": "PutCriminal",
+    "RelativePath": "api/Criminals/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "criminal",
+        "Type": "EPoliceConnectAPI.Models.Criminal",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.CriminalsController",
+    "Method": "DeleteCriminal",
+    "RelativePath": "api/Criminals/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.IncidentReportsController",
+    "Method": "GetIncidentReports",
+    "RelativePath": "api/IncidentReports",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EPoliceConnectAPI.Models.IncidentReport, EPoliceConnectAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.IncidentReportsController",
+    "Method": "PostIncidentReport",
+    "RelativePath": "api/IncidentReports",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "incidentReport",
+        "Type": "EPoliceConnectAPI.Models.IncidentReport",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EPoliceConnectAPI.Models.IncidentReport",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.IncidentReportsController",
+    "Method": "GetIncidentReport",
+    "RelativePath": "api/IncidentReports/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EPoliceConnectAPI.Models.IncidentReport",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.IncidentReportsController",
+    "Method": "PutIncidentReport",
+    "RelativePath": "api/IncidentReports/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "incidentReport",
+        "Type": "EPoliceConnectAPI.Models.IncidentReport",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.IncidentReportsController",
+    "Method": "DeleteIncidentReport",
+    "RelativePath": "api/IncidentReports/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.OfficersController",
+    "Method": "GetOfficers",
+    "RelativePath": "api/Officers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EPoliceConnectAPI.Models.Officer, EPoliceConnectAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.OfficersController",
+    "Method": "PostOfficer",
+    "RelativePath": "api/Officers",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "officer",
+        "Type": "EPoliceConnectAPI.Models.Officer",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EPoliceConnectAPI.Models.Officer",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.OfficersController",
+    "Method": "GetOfficer",
+    "RelativePath": "api/Officers/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EPoliceConnectAPI.Models.Officer",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.OfficersController",
+    "Method": "PutOfficer",
+    "RelativePath": "api/Officers/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "officer",
+        "Type": "EPoliceConnectAPI.Models.Officer",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.OfficersController",
+    "Method": "DeleteOfficer",
+    "RelativePath": "api/Officers/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.PrisonRecordsController",
+    "Method": "GetPrisonRecords",
+    "RelativePath": "api/PrisonRecords",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EPoliceConnectAPI.Models.PrisonRecord, EPoliceConnectAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.PrisonRecordsController",
+    "Method": "PostPrisonRecord",
+    "RelativePath": "api/PrisonRecords",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "prisonRecord",
+        "Type": "EPoliceConnectAPI.Models.PrisonRecord",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EPoliceConnectAPI.Models.PrisonRecord",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.PrisonRecordsController",
+    "Method": "GetPrisonRecord",
+    "RelativePath": "api/PrisonRecords/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "EPoliceConnectAPI.Models.PrisonRecord",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.PrisonRecordsController",
+    "Method": "PutPrisonRecord",
+    "RelativePath": "api/PrisonRecords/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "prisonRecord",
+        "Type": "EPoliceConnectAPI.Models.PrisonRecord",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "EPoliceConnectAPI.Controllers.PrisonRecordsController",
+    "Method": "DeletePrisonRecord",
+    "RelativePath": "api/PrisonRecords/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

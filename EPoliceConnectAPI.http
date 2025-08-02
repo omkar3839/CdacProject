@@ -1,0 +1,6 @@
+@EPoliceConnectAPI_HostAddress = http://localhost:5293
+
+GET {{EPoliceConnectAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
