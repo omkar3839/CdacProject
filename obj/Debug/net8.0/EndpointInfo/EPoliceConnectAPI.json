@@ -5,6 +5,68 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/Auth/login-civilian": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CivilianLoginDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CivilianLoginDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CivilianLoginDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Auth/login-officer": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OfficerLoginDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OfficerLoginDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/OfficerLoginDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Civilian/signup": {
       "post": {
         "tags": [
@@ -45,17 +107,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Civilian"
+                "$ref": "#/components/schemas/CivilianLoginDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Civilian"
+                "$ref": "#/components/schemas/CivilianLoginDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Civilian"
+                "$ref": "#/components/schemas/CivilianLoginDTO"
               }
             }
           }
@@ -151,14 +213,14 @@
         }
       }
     },
-    "/api/Complaints/{id}": {
+    "/api/Complaints/by-civilian/{civilianId}": {
       "get": {
         "tags": [
           "Complaints"
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "civilianId",
             "in": "path",
             "required": true,
             "schema": {
@@ -173,23 +235,34 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Complaint"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Complaint"
+                  }
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Complaint"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Complaint"
+                  }
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Complaint"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Complaint"
+                  }
                 }
               }
             }
           }
         }
-      },
+      }
+    },
+    "/api/Complaints/{id}/status": {
       "put": {
         "tags": [
           "Complaints"
@@ -209,42 +282,21 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Complaint"
+                "type": "string"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Complaint"
+                "type": "string"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Complaint"
+                "type": "string"
               }
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Complaints"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -819,25 +871,19 @@
               "text/plain": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PrisonRecord"
-                  }
+                  "items": { }
                 }
               },
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PrisonRecord"
-                  }
+                  "items": { }
                 }
               },
               "text/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/PrisonRecord"
-                  }
+                  "items": { }
                 }
               }
             }
@@ -1011,12 +1057,12 @@
           "email": {
             "maxLength": 100,
             "minLength": 0,
+            "pattern": "^[^@\\s]+@(yahoo\\.com|gmail\\.com)$",
             "type": "string",
             "nullable": true
           },
           "phone": {
-            "maxLength": 20,
-            "minLength": 0,
+            "pattern": "^(?!00)\\d{10}$",
             "type": "string",
             "nullable": true
           },
@@ -1029,6 +1075,7 @@
           "password": {
             "maxLength": 100,
             "minLength": 0,
+            "pattern": "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\\-_+=])([a-zA-Z0-9!@#$%^&*()\\-_+=]{8,25})$",
             "type": "string",
             "nullable": true
           },
@@ -1037,6 +1084,20 @@
             "items": {
               "$ref": "#/components/schemas/Complaint"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CivilianLoginDTO": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -1056,7 +1117,7 @@
           },
           "dateFiled": {
             "type": "string",
-            "format": "date",
+            "format": "date-time",
             "nullable": true
           },
           "description": {
@@ -1187,18 +1248,19 @@
           "email": {
             "maxLength": 100,
             "minLength": 0,
+            "pattern": "^[^@\\s]+@(yahoo\\.com|gmail\\.com|maha.gov.in)$",
             "type": "string",
             "nullable": true
           },
           "phone": {
-            "maxLength": 20,
-            "minLength": 0,
+            "pattern": "^(?!00)\\d{10}$",
             "type": "string",
             "nullable": true
           },
           "password": {
             "maxLength": 100,
             "minLength": 0,
+            "pattern": "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\\-_+=])([a-zA-Z0-9!@#$%^&*()\\-_+=]{8,25})$",
             "type": "string",
             "nullable": true
           },
@@ -1218,6 +1280,20 @@
             "items": {
               "$ref": "#/components/schemas/IncidentReport"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "OfficerLoginDTO": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
             "nullable": true
           }
         },

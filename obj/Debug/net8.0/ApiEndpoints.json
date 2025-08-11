@@ -1,5 +1,37 @@
 [
   {
+    "ContainingType": "AuthController",
+    "Method": "LoginCivilian",
+    "RelativePath": "api/Auth/login-civilian",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login",
+        "Type": "EPoliceConnectAPI.DTOs.CivilianLoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AuthController",
+    "Method": "LoginOfficer",
+    "RelativePath": "api/Auth/login-officer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login",
+        "Type": "EPoliceConnectAPI.DTOs.OfficerLoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "EPoliceConnectAPI.Controllers.CivilianController",
     "Method": "Login",
     "RelativePath": "api/Civilian/login",
@@ -9,7 +41,7 @@
     "Parameters": [
       {
         "Name": "loginData",
-        "Type": "EPoliceConnectAPI.Models.Civilian",
+        "Type": "EPoliceConnectAPI.DTOs.CivilianLoginDTO",
         "IsRequired": true
       }
     ],
@@ -79,34 +111,8 @@
   },
   {
     "ContainingType": "EPoliceConnectAPI.Controllers.ComplaintsController",
-    "Method": "GetComplaint",
-    "RelativePath": "api/Complaints/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "EPoliceConnectAPI.Models.Complaint",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "EPoliceConnectAPI.Controllers.ComplaintsController",
-    "Method": "PutComplaint",
-    "RelativePath": "api/Complaints/{id}",
+    "Method": "UpdateComplaintStatus",
+    "RelativePath": "api/Complaints/{id}/status",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -117,8 +123,8 @@
         "IsRequired": true
       },
       {
-        "Name": "complaint",
-        "Type": "EPoliceConnectAPI.Models.Complaint",
+        "Name": "newStatus",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -126,19 +132,29 @@
   },
   {
     "ContainingType": "EPoliceConnectAPI.Controllers.ComplaintsController",
-    "Method": "DeleteComplaint",
-    "RelativePath": "api/Complaints/{id}",
-    "HttpMethod": "DELETE",
+    "Method": "GetComplaintsByCivilian",
+    "RelativePath": "api/Complaints/by-civilian/{civilianId}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "civilianId",
         "Type": "System.Int32",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[EPoliceConnectAPI.Models.Complaint, EPoliceConnectAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "EPoliceConnectAPI.Controllers.CriminalsController",
@@ -477,7 +493,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[EPoliceConnectAPI.Models.PrisonRecord, EPoliceConnectAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using EPoliceConnectAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using EPoliceConnectAPI.Models;
+using System;
+
 
 namespace EPoliceConnectAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles ="Designated")] // Require any authenticated officer
     public class IncidentReportsController : ControllerBase
     {
         private readonly EPoliceDbContext _context;
@@ -42,7 +42,7 @@ namespace EPoliceConnectAPI.Controllers
         }
 
         // PUT: api/IncidentReports/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Roles = "Designated")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutIncidentReport(int id, IncidentReport incidentReport)
         {
@@ -73,7 +73,7 @@ namespace EPoliceConnectAPI.Controllers
         }
 
         // POST: api/IncidentReports
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Roles = "Designated")]
         [HttpPost]
         public async Task<ActionResult<IncidentReport>> PostIncidentReport(IncidentReport incidentReport)
         {
@@ -84,6 +84,7 @@ namespace EPoliceConnectAPI.Controllers
         }
 
         // DELETE: api/IncidentReports/5
+        [Authorize(Roles = "Designated")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteIncidentReport(int id)
         {
@@ -104,4 +105,5 @@ namespace EPoliceConnectAPI.Controllers
             return _context.IncidentReports.Any(e => e.ReportId == id);
         }
     }
+
 }

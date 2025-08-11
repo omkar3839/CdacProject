@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EPoliceConnectAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d7830044ab5a84f6cba5aeab5a3230006638c062")]
 [assembly: System.Reflection.AssemblyProductAttribute("EPoliceConnectAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EPoliceConnectAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
