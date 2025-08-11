@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using EPoliceConnectAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using EPoliceConnectAPI.Models;
+using System;
+
 
 namespace EPoliceConnectAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize(Roles = "Designated")]
     [ApiController]
+    [Route("api/[controller]")]
+
     public class PrisonRecordsController : ControllerBase
     {
         private readonly EPoliceDbContext _context;
@@ -20,12 +21,25 @@ namespace EPoliceConnectAPI.Controllers
             _context = context;
         }
 
-        // GET: api/PrisonRecords
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PrisonRecord>>> GetPrisonRecords()
+        public async Task<ActionResult<IEnumerable<object>>> GetPrisonRecords()
         {
-            return await _context.PrisonRecords.ToListAsync();
+            var records = await _context.PrisonRecords
+                .Include(p => p.Criminal)  
+                .Select(p => new
+                {
+                    p.PrisonId,
+                    p.PrisonName,
+                    p.SentenceYears,
+                    p.ReleaseDate,
+                    CriminalName = p.Criminal != null ? p.Criminal.Name : "N/A"
+                })
+                .ToListAsync();
+
+            return Ok(records);
         }
+
+
 
         // GET: api/PrisonRecords/5
         [HttpGet("{id}")]

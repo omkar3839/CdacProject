@@ -1,45 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using EPoliceConnectAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using EPoliceConnectAPI.Models;
 
-namespace EPoliceConnectAPI.Controllers
-{
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CriminalsController : ControllerBase
+
+    namespace EPoliceConnectAPI.Controllers
     {
-        private readonly EPoliceDbContext _context;
-
-        public CriminalsController(EPoliceDbContext context)
+        [Authorize(Roles = "Police")]   
+        [ApiController]
+        [Route("api/[controller]")]
+        public class CriminalsController : ControllerBase
         {
-            _context = context;
-        }
+            private readonly EPoliceDbContext _context;
 
-        // GET: api/Criminals
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Criminal>>> GetCriminals()
-        {
-            return await _context.Criminals.ToListAsync();
-        }
-
-        // GET: api/Criminals/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Criminal>> GetCriminal(int id)
-        {
-            var criminal = await _context.Criminals.FindAsync(id);
-
-            if (criminal == null)
+            public CriminalsController(EPoliceDbContext context)
             {
-                return NotFound();
+                _context = context;
             }
 
-            return criminal;
-        }
+            // GET: api/Criminals
+            //[Authorize(Roles = "Designated,NonDesignated")]
+            [HttpGet]
+            public async Task<ActionResult<IEnumerable<Criminal>>> GetCriminals()
+            {
+                return await _context.Criminals.ToListAsync();
+            }
+
+            // GET: api/Criminals/5
+            [HttpGet("{id}")]
+            public async Task<ActionResult<Criminal>> GetCriminal(int id)
+            {
+                var criminal = await _context.Criminals.FindAsync(id);
+
+                if (criminal == null)
+                {
+                    return NotFound();
+                }
+
+                return criminal;
+            }
 
         // PUT: api/Criminals/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

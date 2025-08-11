@@ -17,7 +17,7 @@ public partial class Complaint
     public int? CivilianId { get; set; }
 
     [Column("date_filed")]
-    public DateOnly? DateFiled { get; set; }
+    public DateTime? DateFiled { get; set; }
 
     [Column("description", TypeName = "text")]
     public string? Description { get; set; }

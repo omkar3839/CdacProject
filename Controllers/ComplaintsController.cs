@@ -1,14 +1,14 @@
-﻿using System;
+﻿using EPoliceConnectAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using EPoliceConnectAPI.Models;
 
 namespace EPoliceConnectAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ComplaintsController : ControllerBase
@@ -20,84 +20,65 @@ namespace EPoliceConnectAPI.Controllers
             _context = context;
         }
 
-        // GET: api/Complaints
+        // GET: api/Complaints (Police only)
+        [Authorize(Roles = "Police")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Complaint>>> GetComplaints()
         {
             return await _context.Complaints.ToListAsync();
         }
 
-        // GET: api/Complaints/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Complaint>> GetComplaint(int id)
+        // GET: api/Complaints/by-civilian/{civilianId} (Civilian only)
+        [Authorize(Roles = "Civilian")]
+        [HttpGet("by-civilian/{civilianId}")]
+        public async Task<ActionResult<IEnumerable<Complaint>>> GetComplaintsByCivilian(int civilianId)
+        {
+            var complaints = await _context.Complaints
+                .Where(c => c.CivilianId == civilianId)
+                .OrderByDescending(c => c.DateFiled)
+                .ToListAsync();
+
+            return Ok(complaints);
+        }
+
+        // PUT: api/Complaints/5/status (Designated Officer only)
+        [Authorize(Roles = "Designated")]
+        [HttpPut("{id}/status")]
+        public async Task<IActionResult> UpdateComplaintStatus(int id, [FromBody] string newStatus)
         {
             var complaint = await _context.Complaints.FindAsync(id);
-
             if (complaint == null)
             {
                 return NotFound();
             }
 
-            return complaint;
-        }
-
-        // PUT: api/Complaints/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutComplaint(int id, Complaint complaint)
-        {
-            if (id != complaint.ComplaintId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(complaint).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ComplaintExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            complaint.Status = newStatus;
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        // POST: api/Complaints
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "Civilian")]
         public async Task<ActionResult<Complaint>> PostComplaint(Complaint complaint)
         {
-            _context.Complaints.Add(complaint);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetComplaint", new { id = complaint.ComplaintId }, complaint);
-        }
-
-        // DELETE: api/Complaints/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteComplaint(int id)
-        {
-            var complaint = await _context.Complaints.FindAsync(id);
-            if (complaint == null)
+            try
             {
-                return NotFound();
+                // Set complaint filed date to current date and time
+                complaint.DateFiled = DateTime.Now;
+
+                _context.Complaints.Add(complaint);
+                await _context.SaveChangesAsync();
+
+                return Ok(complaint);
             }
-
-            _context.Complaints.Remove(complaint);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
         }
+
+
 
         private bool ComplaintExists(int id)
         {

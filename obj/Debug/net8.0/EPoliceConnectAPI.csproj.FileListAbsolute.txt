@@ -260,3 +260,5 @@ D:\Project_DAC\EPoliceConnectAPI\EPoliceConnectAPI\bin\Debug\net8.0\runtimes\win
 D:\Project_DAC\EPoliceConnectAPI\EPoliceConnectAPI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 D:\Project_DAC\EPoliceConnectAPI\EPoliceConnectAPI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 D:\Project_DAC\EPoliceConnectAPI\EPoliceConnectAPI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+D:\Project_DAC\EPoliceConnectAPI\EPoliceConnectAPI\obj\Debug\net8.0\EPoliceConnectAPI.sourcelink.json
+D:\Project_DAC\EPoliceConnectAPI\EPoliceConnectAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
